@@ -147,3 +147,7 @@ html {
 .forgot-password:focus {
     color: black;
 }
+
+.error {
+    color: red;
+}
