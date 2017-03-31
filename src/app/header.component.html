@@ -1,0 +1,44 @@
+<!-- Latest compiled and minified CSS -->
+
+<html>
+
+<head>
+</head>
+
+<body>
+    <style>
+
+    </style>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><B>Yalla Notlob</B></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown" (click)="isClassVisible = true">
+                    <a class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown" href="#">
+                        <div [class.hidden]="isClassVisible"><span id="not" class="notification pink">2</span></div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">notification 1</a></li>
+                        <li><a href="#">notofication 2</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Groups</a></li>
+                <li><a href="#">Orders</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</body>
+
+</html>
