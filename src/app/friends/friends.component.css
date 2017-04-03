@@ -1,0 +1,9 @@
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background-color: #f7f7f7;
+}
+
+.header {
+    font-size: 20px;
+}
