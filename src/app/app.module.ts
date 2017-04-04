@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { routing} from './app.routing';
 import { AppService } from './app.service';
+import {SignupService} from './signup/signup.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { AppService } from './app.service';
     HttpModule,
     routing
   ],
-  providers: [AppService],
+  providers: [AppService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
