@@ -1,21 +1,22 @@
 <div class="container">
     <div class='col-md-2'></div>
 
-
-    <div class="col-md-8">
-        <label for="inputlg">Enter friend Email</label>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></span>
-            <input class=" form-control input-lg" id="inputlg" type="text"></div>
-
-
-        <label for="inputlg"></label>
-        <div style="text-align:right">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <div class="col-md-8">
+            <label for="inputlg">Enter friend Email</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></span>
+                <input class=" form-control input-lg" id="inputlg" type="text" [(ngModel)]="friendemail" name="friendemail"></div>
 
 
+            <label for="inputlg"></label>
+            <div style="text-align:right">
 
-            <button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="inp" type="submit" value="Add Friend">Add</button></div>
-    </div>
+
+                <button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="inp" type="submit" value="Add Friend">Add</button></div>
+            <p class="error"> {{error}}</p>
+        </div>
+    </form>
 </div>
 <br/>
 

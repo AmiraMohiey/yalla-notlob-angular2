@@ -8,9 +8,10 @@
             </div>
 
             <div class="panel-body">
-                <div class="form-group">
+                <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                    <div class="form-group">
 
-                    <select class="form-control" id="sel1">
+                        <select class="form-control" id="sel1">
                     <option value="" selected disabled>Order For</option>
     <option>Breakfast</option>
     <option>Lunch</option>
@@ -18,32 +19,42 @@
     <option>Dessert</option>
   </select>
 
-                </div>
+                    </div>
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <input type="text" class="form-control" placeholder="Order from ">
+                        <input type="text" class="form-control" placeholder="Order from ">
 
-                </div>
+                    </div>
 
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <select class="form-control" id="sel2">
+                        <select class="form-control" id="sel2">
                     <option value="" selected disabled>Invite Friends</option>
     <option>Friend1</option>
     <option>friend2</option>
     <option>friend3</option>
   
   </select>
-                </div>
+                    </div>
+                    <div class="form-group">
 
-                <div class="form-group">
+                        <select class="form-control" id="sel3">
+                    <option value="" selected disabled>Invite Group</option>
+    <option value="group1" >group1</option>
+    <option>group2</option>
+    <option>group3</option>
+  
+  </select>
+                    </div>
 
-                    <input type="submit" value="Publish" class="btn btn-default" style="width:100%">
+                    <div class="form-group">
 
-                </div>
+                        <input type="submit" value="Publish" class="btn btn-default" style="width:100%">
 
+                    </div>
+                </form>
             </div>
         </div>
 
