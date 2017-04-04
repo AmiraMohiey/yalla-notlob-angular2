@@ -6,41 +6,41 @@
 </head>
 
 <body>
-<style>
+    <style>
 
-</style>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"><B>Yalla Notlob</B></a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+    </style>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" [routerLink]="['/home']"><B>Yalla Notlob</B></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active "><a class="glyphicon glyphicon-home" [routerLink]="['/home']">Home</a></li>
+                <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-user" [routerLink]="['/friends']">Friends</a></li>
+                <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-asterisk" [routerLink]="['/groups']">Groups</a></li>
+                <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-cutlery" [routerLink]="['/orders']">Orders</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li [class.hidden]="!loggedin" class="dropdown" (click)="isClassVisible = true">
+                    <a class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown" href="#">
+                        <div [class.hidden]="isClassVisible"><span id="not" class="notification pink">2</span></div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">notification 1</a></li>
+                        <li><a href="#">notofication 2</a></li>
 
-      <li [class.hidden]="!loggedin"><a href="#">Friends</a></li>
-      <li [class.hidden]="!loggedin"><a href="#">Groups</a></li>
-      <li [class.hidden]="!loggedin"><a href="#">Orders</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li [class.hidden]="!loggedin" class="dropdown" (click)="isClassVisible = true">
-        <a class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown" href="#">
-          <div [class.hidden]="isClassVisible"><span id="not" class="notification pink">2</span></div>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">notification 1</a></li>
-          <li><a href="#">notofication 2</a></li>
-
-        </ul>
-      </li>
-      <li><a [class.hidden]="loggedin" [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-      </li>
-      <li><a [class.hidden]="loggedin" [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-      </li>
-      <li><a [class.hidden]="!loggedin" href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    </ul>
-  </div>
-</nav>
+                    </ul>
+                </li>
+                <li><a [class.hidden]="loggedin" [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li><a [class.hidden]="loggedin" [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                </li>
+                <li><a [class.hidden]="!loggedin" href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
 </body>
-<button (click)="changeStatus()">Change status</button>
+<!--<button (click)="changeStatus()">Change status</button>-->
+
 </html>
