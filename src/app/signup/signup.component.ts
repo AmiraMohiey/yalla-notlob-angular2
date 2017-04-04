@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Headers, Http } from '@angular/http';
+import { SignupService } from './signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,17 +18,13 @@ export class SignupComponent implements OnInit {
   confirm = '';
 
 
-  constructor(private http: Http) { }
+  constructor(private signupService: SignupService) { }
 
   ngOnInit() {
   }
 
-  sendRegData() {
-    const body = JSON.stringify(this.user);
-    const headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    this.http.post('https://notlob-2eee7.firebaseio.com/user.json', body, {headers: headers}).subscribe(
+  sendData() {
+    this.signupService.sendRegData(this.user).subscribe(
       data => console.log(data)
     );
   }
@@ -38,7 +34,7 @@ export class SignupComponent implements OnInit {
     if (this.user.password !== this.confirm) {
       this.error = 'passwords don\'t match';
     } else {
-      this.sendRegData();
+      this.sendData();
       this.error = '' ;
     }
 
