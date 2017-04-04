@@ -27,7 +27,8 @@ import { GroupsComponent } from './groups/groups.component';
     AddorderComponent,
     OrdersComponent,
     VieworderComponent,
-    GroupsComponent
+    GroupsComponent,
+    
   ],
   imports: [
     BrowserModule,

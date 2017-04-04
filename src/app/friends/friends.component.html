@@ -14,7 +14,7 @@
 
 
 
-            <input class="btn btn-default btn-lg" id="inp" type="submit" value="Add Friend"></div>
+            <button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="inp" type="submit" value="Add Friend">Add</button></div>
     </div>
 </div>
 <br/>
@@ -25,7 +25,22 @@
         <div class="header">
             <div class='glyphicon glyphicon-user'> </div>
             Friends' List </div>
-        <div class="panel-body">Panel Content</div>
+        <hr/>
+
+        <div class="panel-body" *ngFor="let friend of friends">
+            <div class="media">
+                <div class="media-left">
+                    <img src="{{friend.avatar}}" class="media-object" style="width:60px">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{friend.name}}</h4>
+
+                </div>
+
+            </div>
+        </div>
+
+
         <div class='col-md-2'></div>
     </div>
 </div>
