@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Headers, Http } from '@angular/http';
 import { SignupService } from './signup.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class SignupComponent implements OnInit {
   confirm = '';
 
 
-  constructor(private http: Http, private signupService: SignupService) { }
+  constructor(private signupService: SignupService) { }
 
   ngOnInit() {
   }

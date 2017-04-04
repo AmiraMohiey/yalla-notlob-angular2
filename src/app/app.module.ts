@@ -10,6 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { routing} from './app.routing';
 import { AppService } from './app.service';
 import {SignupService} from './signup/signup.service';
+import {LoginService} from './login/login.service';
 import { HomeComponent } from './home/home.component';
 import { FriendsComponent } from './friends/friends.component';
 import { AddorderComponent } from './addorder/addorder.component';
@@ -36,7 +37,7 @@ import { GroupsComponent } from './groups/groups.component';
     HttpModule,
     routing
   ],
-  providers: [AppService, SignupService],
+  providers: [AppService, SignupService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
