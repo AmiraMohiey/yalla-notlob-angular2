@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './login.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,18 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  msg = '';
   error = '';
   logins = {
     email: '',
     password: ''
   };
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.msg = params['msg'];
+    });
+  }
 
 
   sendData() {
