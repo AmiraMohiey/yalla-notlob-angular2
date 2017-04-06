@@ -10,6 +10,7 @@ import { FriendsService } from './friends.service';
 })
 export class FriendsComponent implements OnInit {
 
+
 //   friendemail="";
 //   newfriend={name:"",avatar:""}
 //   error="";
@@ -28,10 +29,11 @@ export class FriendsComponent implements OnInit {
 // }
   
 // =======
+
   friendemail= '';
+  newfriend= {name: '', avatar: ''};
   error= '';
-  friends= [{'name': 'amira', 'avatar': '../assets/u.png'},
-           {'name': 'salma', 'avatar': '../assets/u.png'}];
+  friends= [];
 
   constructor(private friendsService: FriendsService) {}
 
@@ -39,7 +41,7 @@ export class FriendsComponent implements OnInit {
     this.friendsService.getFriends().subscribe(
       data => {
         const keyArr = [];
-        for (let key in data) {
+        for (const key in data) {
           keyArr.push(data[key]);
         }
         this.friends = keyArr;
