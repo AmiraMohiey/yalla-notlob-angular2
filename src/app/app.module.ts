@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
@@ -21,6 +22,15 @@ import { AppService } from './app.service';
 import {SignupService} from './signup/signup.service';
 import {LoginService} from './login/login.service';
 import {FriendsService} from './friends/friends.service';
+
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    tokenName: 'token',
+    tokenGetter: (() => localStorage.getItem('token')),
+    globalHeaders: [{'Content-Type': 'application/json'}],
+  }), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +53,11 @@ import {FriendsService} from './friends/friends.service';
     HttpModule,
     routing
   ],
-  providers: [AppService, SignupService, LoginService, FriendsService],
+  providers: [AppService, SignupService, LoginService, FriendsService, {
+    provide: AuthHttp,
+    useFactory: authHttpServiceFactory,
+    deps: [Http, RequestOptions]
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
