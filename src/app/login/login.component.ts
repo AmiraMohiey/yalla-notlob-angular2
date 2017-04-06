@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './login.service';
 import {ActivatedRoute} from "@angular/router";
+import {Router, NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private loginService: LoginService, private route: ActivatedRoute) {
+  constructor(private loginService: LoginService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
       this.msg = params['msg'];
     });
@@ -25,12 +26,19 @@ export class LoginComponent implements OnInit {
 
   sendData() {
     this.loginService.sendLoginData(this.logins).subscribe(
-      data => console.log(data)
+      data => {
+        if (data.success === true) {
+          console.log(data);
+          localStorage.setItem('token', data.token);
+          this.router.navigate(['home']);
+        }else {
+          this.error = data.msg;
+        }
+      }
     );
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.logins);
     this.sendData();
   }
 
