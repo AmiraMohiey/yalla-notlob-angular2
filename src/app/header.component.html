@@ -15,7 +15,7 @@
                 <a class="navbar-brand" [routerLink]="['/home']"><B>Yalla Notlob</B></a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active "><a class="glyphicon glyphicon-home" [routerLink]="['/home']">Home</a></li>
+                <li ><a class="glyphicon glyphicon-home" [routerLink]="['/home']">Home</a></li>
                 <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-user" [routerLink]="['/friends']">Friends</a></li>
                 <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-asterisk" [routerLink]="['/groups']">Groups</a></li>
                 <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-cutlery" [routerLink]="['/orders']">Orders</a></li>
