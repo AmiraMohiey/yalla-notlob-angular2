@@ -14,7 +14,7 @@ export class FriendsComponent implements OnInit {
   ngOnInit() {}
    onSubmit(form: NgForm) {
     console.log(this.friendemail);
-  //if no username { error="sorry no such user"}
+
 
   }
 

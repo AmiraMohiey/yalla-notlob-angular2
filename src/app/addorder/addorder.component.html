@@ -8,10 +8,10 @@
             </div>
 
             <div class="panel-body">
-                <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-                    <div class="form-group">
+                <!--<form (ngSubmit)="onSubmit(form)" #form="ngForm">-->
+                <div class="form-group">
 
-                        <select class="form-control" id="sel1">
+                    <select class="form-control" id="sel1">
                     <option value="" selected disabled>Order For</option>
     <option>Breakfast</option>
     <option>Lunch</option>
@@ -19,42 +19,40 @@
     <option>Dessert</option>
   </select>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <input type="text" class="form-control" placeholder="Order from ">
+                    <input type="text" class="form-control" [(ngModel)]="place" placeholder="Order from ">
 
-                    </div>
+                </div>
 
 
-                    <div class="form-group">
-
-                        <select class="form-control" id="sel2">
-                    <option value="" selected disabled>Invite Friends</option>
-    <option>Friend1</option>
-    <option>friend2</option>
-    <option>friend3</option>
+                <div class="form-group">
+                    <label for="">invite friend</label>
+                    <select class="form-control" id="sel2" [(ngModel)]="invitedfriend">
+                  
+    
+    <option *ngFor="let f of invitedfriends" [ngValue]="f.name">{{f.name}}</option>
   
   </select>
-                    </div>
-                    <div class="form-group">
-
-                        <select class="form-control" id="sel3">
-                    <option value="" selected disabled>Invite Group</option>
-    <option value="group1" >group1</option>
-    <option>group2</option>
-    <option>group3</option>
+                </div>
+                <div class="form-group">
+                    <label for="">invite group</label>
+                    <select class="form-control" id="sel3" [(ngModel)]="usergroups">
+                   
+     <option *ngFor="let g of usergroups" [ngValue]="g.name">{{g.name}}</option>
+   
   
   </select>
-                    </div>
+                </div>
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <input type="submit" value="Publish" class="btn btn-default" style="width:100%">
+                    <button value="Publish" (click)="onclicked()" class="btn btn-default glyphicon glyphicon-ok" style="width:100%">Order</button>
 
-                    </div>
-                </form>
+                </div>
+                <!--</form>-->
             </div>
         </div>
 

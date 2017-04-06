@@ -17,6 +17,7 @@ import { AddorderComponent } from './addorder/addorder.component';
 import { OrdersComponent } from './orders/orders.component';
 import { VieworderComponent } from './vieworder/vieworder.component';
 import { GroupsComponent } from './groups/groups.component';
+import { ViewnotificationComponent } from './viewnotification/viewnotification.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { GroupsComponent } from './groups/groups.component';
     OrdersComponent,
     VieworderComponent,
     GroupsComponent,
+    ViewnotificationComponent,
     
   ],
   imports: [
