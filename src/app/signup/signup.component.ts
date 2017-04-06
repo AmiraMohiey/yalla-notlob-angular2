@@ -10,14 +10,14 @@ import { SignupService } from './signup.service';
 export class SignupComponent implements OnInit {
   error = '';
   user = {
-  name: '',
-  email: '',
-  username: '',
-  password: ''
-       };
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    image: ''
+  };
   confirm = '';
-
-
+  showImage = false;
   constructor(private signupService: SignupService) { }
 
   ngOnInit() {
@@ -37,5 +37,32 @@ export class SignupComponent implements OnInit {
       this.error = '' ;
     }
 
+  }
+
+  handleFileSelect(evt) {
+    this.error = '' ;
+    const files = evt.target.files;
+    const file = files[0];
+    if (files && file ) {
+      if (file.size < 5000000) {
+        if (file.type === 'image/jpeg' || file.type === 'image/png') {
+          const reader = new FileReader();
+
+          reader.onload = this._handleReaderLoaded.bind(this);
+
+          reader.readAsBinaryString(file);
+        } else {
+          this.error += '\n only png and jpeg allowed';
+        }
+      } else {
+        this.error += '\n image must be less than 5 mb';
+      }
+    }
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    const binaryString = readerEvt.target.result;
+    this.user.image = btoa(binaryString);
+    this.showImage = true;
   }
 }
