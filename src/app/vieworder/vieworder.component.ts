@@ -29,6 +29,21 @@ console.log(this.addmeal)
 
 
 }
+deletemeal(event){
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var meal_id = idAttr.nodeValue;
+   
+
+
+}
+statuscheck(){
+
+  if (this.order.status=="waiting")
+  {  return true
+    }
+    return false
+}
   ngOnInit() {
     
   }

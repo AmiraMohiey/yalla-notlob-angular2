@@ -6,8 +6,8 @@ import {Router, NavigationExtras} from "@angular/router";
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-orders=[{id:"1",for:"breakfast",restaurant:"shbrawy",invited_no:"10",joined_no:"5",status:"waiting",meal:[{comment:"no salt",amount:"2",price:"8",item:"fries",person:"amira"}],joined:["amira","salma","mohamed"],invitedgroups:[],invitedfriends:["amira","salma","mohamed","lina"]},
-        {id:"2",for:"lunch",restaurant:"mac",invited_no:"50",joined_no:"20",status:"finished",meal:[{comment:"",amount:"",price:"",item:"",person:""}],joined:[],invitedgroups:[],invitedfriends:[]}]
+orders=[{id:"1",for:"breakfast",restaurant:"shbrawy",invited_no:"10",joined_no:"5",status:"waiting",meal:[{ id:"1",comment:"no salt",amount:"2",price:"8",item:"fries",person:"amira"}],joined:["amira","salma","mohamed"],invitedgroups:[],invitedfriends:["amira","salma","mohamed","lina"]},
+        {id:"2",for:"lunch",restaurant:"mac",invited_no:"50",joined_no:"20",status:"finished",meal:[{id:"2",comment:"",amount:"",price:"",item:"",person:""}],joined:[],invitedgroups:[],invitedfriends:[]}]
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ view(event: any){
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var order_id = idAttr.nodeValue;
-    var order={id:"",for:"",restaurant:"",invited_no:"",joined_no:"",status:"",meal:[{comment:"",amount:"",price:"",item:"",person:""}],joined:[],invitedgroups:[],invitedfriends:[]}
+    var order={id:"",for:"",restaurant:"",invited_no:"",joined_no:"",status:"",meal:[{id:"",comment:"",amount:"",price:"",item:"",person:""}],joined:[],invitedgroups:[],invitedfriends:[]}
     for (var i = 0; i < this.orders.length; i++) {
 
 if (this.orders[i].id==order_id){
