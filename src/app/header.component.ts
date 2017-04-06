@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AppService} from './app.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,18 @@ import {AppService} from './app.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() loggedin;
+  notificationnumber;
   constructor(private appService: AppService) { }
-  changeStatus(){
+  changeStatus() {
     this.appService.setLoggedin(!this.appService.checkStatus());
   }
-  ngOnInit() {}
+  ngOnInit() { }
+  getnotification() {
+    this.notificationnumber = 2;// comming from server 
+  }
+  onnotificationseen() {
+
+    this.notificationnumber = 0;
+  }
 }
+

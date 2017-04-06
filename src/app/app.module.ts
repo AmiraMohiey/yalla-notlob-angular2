@@ -15,6 +15,7 @@ import { AddorderComponent } from './addorder/addorder.component';
 import { OrdersComponent } from './orders/orders.component';
 import { VieworderComponent } from './vieworder/vieworder.component';
 import { GroupsComponent } from './groups/groups.component';
+import { ViewnotificationComponent } from './viewnotification/viewnotification.component';
 
 import { AppService } from './app.service';
 import {SignupService} from './signup/signup.service';
@@ -33,6 +34,8 @@ import {FriendsService} from './friends/friends.service';
     OrdersComponent,
     VieworderComponent,
     GroupsComponent,
+
+    ViewnotificationComponent,
   ],
   imports: [
     BrowserModule,

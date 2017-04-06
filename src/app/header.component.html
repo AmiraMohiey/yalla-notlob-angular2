@@ -1,11 +1,11 @@
-<!-- Latest compiled and minified CSS -->
-
 <html>
 
 <head>
 </head>
 
+
 <body>
+
     <style>
 
     </style>
@@ -14,22 +14,28 @@
             <div class="navbar-header">
                 <a class="navbar-brand" [routerLink]="['/home']"><B>Yalla Notlob</B></a>
             </div>
-            <ul class="nav navbar-nav">
-                <li ><a class="glyphicon glyphicon-home" [routerLink]="['/home']">Home</a></li>
+
+            <ul class="nav navbar-nav" id="nav">
+                <li class=""><a class="glyphicon glyphicon-home" [routerLink]="['/home']">Home</a></li>
                 <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-user" [routerLink]="['/friends']">Friends</a></li>
                 <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-asterisk" [routerLink]="['/groups']">Groups</a></li>
                 <li [class.hidden]="!loggedin"><a class="glyphicon glyphicon-cutlery" [routerLink]="['/orders']">Orders</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li [class.hidden]="!loggedin" class="dropdown" (click)="isClassVisible = true">
+                <li [class.hidden]="!loggedin" class="dropdown" (click)="onnotificationseen()">
                     <a class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown" href="#">
-                        <div [class.hidden]="isClassVisible"><span id="not" class="notification pink">2</span></div>
+                        <div *ngIf="notificationnumber"><span id="not" class="notification pink">{{notificationnumber}}</span></div>
                     </a>
+
                     <ul class="dropdown-menu">
-                        <li><a href="#">notification 1</a></li>
+                        <li><a> notofication 1</a></li>
                         <li><a href="#">notofication 2</a></li>
 
+
+                        <li><a class="btn btn-lin" [routerLink]="['/viewnotification']">view all</a></li>
+
                     </ul>
+
                 </li>
                 <li><a [class.hidden]="loggedin" [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
                 </li>
@@ -42,5 +48,6 @@
 
 </body>
 <button (click)="changeStatus()">Change status</button>
+
 
 </html>
