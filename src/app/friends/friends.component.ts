@@ -31,7 +31,7 @@ export class FriendsComponent implements OnInit {
 // =======
 
   friendemail= '';
-  newfriend= {name: '', avatar: ''};
+  newfriend= { id: '',name: '', avatar: ''};
   error= '';
   friends= [];
 
@@ -43,6 +43,7 @@ export class FriendsComponent implements OnInit {
         const keyArr = [];
         for (const key in data) {
           keyArr.push(data[key]);
+          
         }
         this.friends = keyArr;
       }
@@ -59,6 +60,12 @@ export class FriendsComponent implements OnInit {
 
 
   }
+unfriend(event){
 
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var friend_id = idAttr.nodeValue;
+    console.log(friend_id);
+}
 
 }

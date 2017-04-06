@@ -1,7 +1,7 @@
-.btn:hover,
-.btn:active,
-.btn:focus {
-    background-color: #f7f7f7;
+.bt:hover,
+.bt:active,
+.bt:focus {
+    background-color: maroon;
 }
 
 .header {
