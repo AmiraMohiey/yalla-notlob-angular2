@@ -17,16 +17,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Breakfast</td>
-                    <td>Macdonald's</td>
-                    <td>50</td>
-                    <td>20</td>
-                    <td>finished</td>
+                <tr *ngFor="let order of orders">
+                    <td>{{order.for}}</td>
+                    <td>{{order.from}}</td>
+                    <td>{{order.invited_no}}</td>
+                    <td>{{order.joined_no}}</td>
+                    <td>{{order.status}}</td>
                     <td>
-                        <a class="btn btn-default btn-sm" id="inp" type="submit" [routerLink]="['/vieworder']">View</a>
-                        <a class="btn btn-default btn-sm" id="inp" type="submit">finish</a>
-                        <a class="btn btn-danger btn-sm" id="inp" type="submit">cancel</a>
+                        <a class="btn btn-default btn-sm" id="inp" type="submit" id={{order.id}} (click)="view($event)">View</a>
+                        <a *ngIf="hidebutton(order.status)" class="btn btn-default btn-sm" id={{order.id}} (click)="finish($event)" type="submit">finish</a>
+                        <a *ngIf="hidebutton(order.status)" class="btn btn-danger btn-sm" id={{order.id}} (click)="cancel($event)" type="submit">cancel</a>
 
 
                     </td>
