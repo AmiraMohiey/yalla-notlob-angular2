@@ -7,11 +7,11 @@ export class SignupService {
   constructor(private http: Http) { }
 
   sendRegData(user) {
+    console.log(user);
     const body = JSON.stringify(user);
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.post('https://notlob-2eee7.firebaseio.com/user.json', body, {headers: headers});
+    return this.http.post('http://172.16.5.117:8090/authenticate/register', body, {headers: headers});
   }
-
 }

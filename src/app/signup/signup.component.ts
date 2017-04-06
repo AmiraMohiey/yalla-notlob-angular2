@@ -30,7 +30,6 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.user);
     if (this.user.password !== this.confirm) {
       this.error = 'passwords don\'t match';
     } else {
