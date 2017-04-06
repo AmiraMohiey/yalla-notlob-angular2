@@ -3,7 +3,7 @@
     background-image: -moz-linear-gradient(top, rgb(247, 130, 151), rgb(244, 102, 119));
     background-image: -o-linear-gradient(top, rgb(247, 130, 151), rgb(244, 102, 119));
     background-image: -ms-linear-gradient(top, rgb(247, 130, 151), rgb(244, 102, 119));
-    background-image: linear-gradient(top, rgb(247, 130, 151), rgb(244, 102, 119));
+    /*background-image: linear-gradient(top, rgb(247, 130, 151), rgb(244, 102, 119));*/
     filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#f78297', EndColorStr='#f46677');
     border: 1px solid #ce4f5e;
 }

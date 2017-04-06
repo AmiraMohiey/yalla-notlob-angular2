@@ -9,25 +9,25 @@ import { FriendsService } from './friends.service';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
-<<<<<<< HEAD
-  friendemail="";
-  newfriend={name:"",avatar:""}
-  error="";
-  friends=[{"name":"amira","avatar":"../assets/u.png"},
-           {"name":"salma","avatar":"../assets/u.png"}]
-  constructor() {}
-  ngOnInit() {}
-   onSubmit(form: NgForm) {
-    console.log(this.friendemail);
+
+//   friendemail="";
+//   newfriend={name:"",avatar:""}
+//   error="";
+//   friends=[{"name":"amira","avatar":"../assets/u.png"},
+//            {"name":"salma","avatar":"../assets/u.png"}]
+//   constructor() {}
+//   ngOnInit() {}
+//    onSubmit(form: NgForm) {
+//     console.log(this.friendemail);
  
-  if(this.friendemail!="")
- { this.newfriend.name=this.friendemail; 
-   this.newfriend.avatar="../assets/u.png" 
-this.error="";}
- else {this.error="no such user"
-}
+//   if(this.friendemail!="")
+//  { this.newfriend.name=this.friendemail; 
+//    this.newfriend.avatar="../assets/u.png" 
+// this.error="";}
+//  else {this.error="no such user"
+// }
   
-=======
+// =======
   friendemail= '';
   error= '';
   friends= [{'name': 'amira', 'avatar': '../assets/u.png'},
@@ -54,7 +54,7 @@ this.error="";}
       data => console.log(data)
     );
   // if no username { error="sorry no such user"}
->>>>>>> aba1f46707e8017c14296f616bacc2245bb01424
+
 
   }
 

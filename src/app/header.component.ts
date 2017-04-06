@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() loggedin;
-  notificationnumber;
+  notificationnumber=1;
   constructor(private appService: AppService) { }
   changeStatus() {
     this.appService.setLoggedin(!this.appService.checkStatus());

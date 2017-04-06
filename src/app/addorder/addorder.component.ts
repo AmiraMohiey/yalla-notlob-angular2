@@ -6,16 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addorder.component.css']
 })
 export class AddorderComponent implements OnInit {
+  invited=""
 order={place:"",
 for:"",
 invitedfriend:"",
 invitedgroup:""}
 
-invitedfriends=[{name:"amira"},{name:"mohamed"}]
+userfriends=[{name:"amira"},{name:"mohamed"}]
 usergroups=[{name:"group1"},{name:"group2"}]
 constructor() { }
 ngOnInit() {  }
 onclicked(){
-  console.log(this.order.invitedfriend)
+  console.log(this.order,this.invited)
+
 }
+isgroup(){
+
+  if(this.invited=="group")
+{return true}
+else {return false}}
+
 }
