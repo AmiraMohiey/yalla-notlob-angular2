@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SignupService } from './signup.service';
+import {Router, NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -18,14 +19,27 @@ export class SignupComponent implements OnInit {
   };
   confirm = '';
   showImage = false;
-  constructor(private signupService: SignupService) { }
+  constructor(private signupService: SignupService, private router: Router) { }
 
   ngOnInit() {
   }
 
   sendData() {
     this.signupService.sendRegData(this.user).subscribe(
-      data => console.log(data)
+      data => {
+        console.log('data success', data.success);
+        if (data.success === true) {
+          console.log('data', data);
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              'msg': 'Successful Signup.. Please login'
+            }
+          };
+          this.router.navigate(['login'], navigationExtras);
+        }else {
+          this.error = data.error;
+        }
+      }
     );
   }
 
