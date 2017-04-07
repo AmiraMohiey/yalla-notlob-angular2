@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectorRef,OnChanges,DoCheck} from '@angular/core';
+import { Component, OnInit ,DoCheck} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FriendsService } from './friends.service';
 
@@ -12,13 +12,13 @@ import { FriendsService } from './friends.service';
 export class FriendsComponent implements OnInit ,DoCheck{
 
 
-
+  msg=""
   friendemail= '';
   newfriend= { id: '',name: '', avatar: ''};
   error= '';
   friends= [];
 
-  constructor(private friendsService: FriendsService,private cdRef:ChangeDetectorRef) {}
+constructor(private friendsService: FriendsService) {}
 ngDoCheck(){ this.friendsService.getFriends().subscribe(
       data => {
         const keyArr = [];
@@ -27,7 +27,7 @@ ngDoCheck(){ this.friendsService.getFriends().subscribe(
           
         }
         this.friends = keyArr;
-        //  this.cdRef.detectChanges()
+        
       }
     );
 
@@ -41,7 +41,7 @@ ngDoCheck(){ this.friendsService.getFriends().subscribe(
           
         }
         this.friends = keyArr;
-        //  this.cdRef.detectChanges()
+      
       }
     );
   }
@@ -55,8 +55,9 @@ ngDoCheck(){ this.friendsService.getFriends().subscribe(
 
     );
   // if no username { error="sorry no such user"}
-      this.cdRef.detectChanges()
-
+   
+this.msg='friend added successfully'
+ this.friendemail=''//last step to empty the text fielf
   }
 unfriend(event){
 
