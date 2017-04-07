@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { FacebookModule } from 'ng2-facebook-sdk';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
@@ -54,7 +55,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    FacebookModule.forRoot()
   ],
   providers: [AppService, SignupService, LoginService, FriendsService, {
     provide: AuthHttp,
