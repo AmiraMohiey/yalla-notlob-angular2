@@ -24,6 +24,7 @@ import {SignupService} from './signup/signup.service';
 import {LoginService} from './login/login.service';
 import {FriendsService} from './friends/friends.service';
 import { GroupdetailsComponent } from './groups/groupdetails.component';
+import { Guard } from './guard';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -58,7 +59,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     routing,
     FacebookModule.forRoot()
   ],
-  providers: [AppService, SignupService, LoginService, FriendsService, {
+  providers: [AppService, SignupService, LoginService, FriendsService, Guard, {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [Http, RequestOptions]
