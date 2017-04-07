@@ -43,13 +43,12 @@
                 </li>
                 <li><a [class.hidden]="loggedin" [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
-                <li><a [class.hidden]="!loggedin" href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a [class.hidden]="!loggedin" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
     </nav>
 
 </body>
-<button (click)="changeStatus()">Change status</button>
 
 
 </html>
