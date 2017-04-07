@@ -22,6 +22,7 @@ import { AppService } from './app.service';
 import {SignupService} from './signup/signup.service';
 import {LoginService} from './login/login.service';
 import {FriendsService} from './friends/friends.service';
+import { GroupdetailsComponent } from './groups/groupdetails.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -46,6 +47,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     GroupsComponent,
 
     ViewnotificationComponent,
+
+    GroupdetailsComponent,
   ],
   imports: [
     BrowserModule,
