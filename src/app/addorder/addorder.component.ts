@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { OrdersService } from '../orders/orders.service';
 @Component({
   selector: 'app-addorder',
   templateUrl: './addorder.component.html',
@@ -7,18 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddorderComponent implements OnInit {
   invited=""
-order={place:"",
-for:"",
+order={resturant:"",
+forr:"",
 invitedfriend:"",
 invitedgroup:""}
 
-userfriends=[{name:"amira"},{name:"mohamed"}]
+userfriends=[{name:"amira@yahoo.com"},{name:"mohamed@yahoo.com"}]
 usergroups=[{name:"group1"},{name:"group2"}]
-constructor() { }
+constructor( private ordersservice: OrdersService) { }
 ngOnInit() {  }
 onclicked(){
-  console.log(this.order,this.invited)
+   console.log(this.order)
 
+  this.ordersservice.addorder(this.order).subscribe(
+      data => { console.log(data)
+       
+      })
 }
 isgroup(){
 

@@ -23,7 +23,7 @@
                     <td>{{meal.amount}}</td>
                     <td>{{meal.price}}</td>
                     <td>{{meal.comment}}
-                        <a *ngIf="statuscheck()" class="btn btn-danger btn-sm glyphicon glyphicon-remove" id={{meal.id}} (click)="deletemeal($event)" type="submit"></a>
+                        <a *ngIf="statuscheck()" class="btn btn-danger btn-sm glyphicon glyphicon-remove" id={{meal._id}} (click)="deletemeal($event)" type="submit"></a>
                     </td>
                     <td>
 
