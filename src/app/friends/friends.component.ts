@@ -1,4 +1,4 @@
-import { Component, OnInit ,DoCheck} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FriendsService } from './friends.service';
 
@@ -7,64 +7,64 @@ import { FriendsService } from './friends.service';
   selector: 'app-friends',
   templateUrl: './friends.component.html',
   styleUrls: ['./friends.component.css'],
-  
 })
-export class FriendsComponent implements OnInit ,DoCheck{
+
+export class FriendsComponent implements OnInit {
 
 
-  msg=""
-  friendemail= '';
-  newfriend= { id: '',name: '', avatar: ''};
-  error= '';
-  friends= [];
+  friendemail = '';
+  newfriend = { id: '', name: '', avatar: ''};
+  error = '';
+  msg= '';
+  friends;
 
 constructor(private friendsService: FriendsService) {}
-ngDoCheck(){ this.friendsService.getFriends().subscribe(
-      data => {
-        const keyArr = [];
-        for (const key in data) {
-          keyArr.push(data[key]);
-          
-        }
-        this.friends = keyArr;
-        
-      }
-    );
 
-}
   ngOnInit() {
+    this.getFiends ();
+  }
+
+  getFiends () {
     this.friendsService.getFriends().subscribe(
       data => {
         const keyArr = [];
-        for (const key in data) {
-          keyArr.push(data[key]);
-          
+        for (const key in data.friends) {
+          keyArr.push(data.friends[key]);
         }
         this.friends = keyArr;
-      
       }
     );
   }
 
   onSubmit(form: NgForm) {
-    const user = {'name': this.friendemail, 'avatar': '../assets/u.png'};
+    const user = {'email': this.friendemail};
     console.log(this.friendemail);
     this.friendsService.addFriend(user).subscribe(
-      data => console.log(data)
-      
-
+      data => {
+        if (data.success === true) {
+          this.getFiends();
+          this.msg = 'added ' + this.friendemail + ' successfully';
+        } else {
+          this.error = data.error;
+        }
+      }
     );
-  // if no username { error="sorry no such user"}
-   
-this.msg='friend added successfully'
- this.friendemail=''//last step to empty the text fielf
   }
-unfriend(event){
 
+  unfriend(event) {
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var friend_id = idAttr.nodeValue;
-    console.log(friend_id);
-}
+    this.friendsService.unfriend({id: friend_id}).subscribe(
+      data => {
+        if (data.success === true) {
+          this.getFiends();
+          this.msg = 'deleted successfully';
+        }else{
+          this.error = data.error;
+        }
+      }
+    );
+  }
 
 }
