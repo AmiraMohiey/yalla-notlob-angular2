@@ -15,6 +15,7 @@
 
                 <button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="inp" type="submit" value="Add Friend">Add</button></div>
             <p class="error"> {{error}}</p>
+            <p class="msg"> {{msg}}</p>
         </div>
     </form>
 </div>
@@ -30,33 +31,31 @@
 
 
 
-        <div class="panel-body">
-            <div class="media">
-                <div class="media-left">
-                    <img src="{{newfriend.avatar}}" class="media-object" style="width:60px">
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{newfriend.name}}</h4>
+        <!--<div class="panel-body">-->
+            <!--<div class="media">-->
+                <!--<div class="media-left">-->
+                    <!--<img src="{{newfriend.avatar}}" class="media-object" style="width:60px">-->
+                <!--</div>-->
+                <!--<div class="media-body">-->
+                    <!--<h4 class="media-heading">{{newfriend.name}}</h4>-->
 
-                </div>
+                <!--</div>-->
 
-            </div>
-        </div>
-
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="panel-body" *ngFor="let friend of friends">
             <div class="media">
                 <div class="media-left">
-                    <img src="{{friend.avatar}}" class="media-object" style="width:60px">
+                    <img src="data:image/png;base64,{{friend.avatar}}" class="media-object" style="width:60px">
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">{{friend.name}}</h4>
-                    <a class="bt btn btn-danger btn-sm glyphicon glyphicon-remove" id={{friend.id}} (click)="unfriend($event)" type="submit">unfriend</a>
+                    <a class="bt btn btn-danger btn-sm glyphicon glyphicon-remove" id={{friend._id}} (click)="unfriend($event)" type="submit">unfriend</a>
                 </div>
 
             </div>
         </div>
-
 
         <div class='col-md-2'></div>
     </div>
