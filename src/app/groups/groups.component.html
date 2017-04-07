@@ -6,15 +6,15 @@
         <label for="inputlg">Group Name</label>
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></span>
-            <input class=" form-control input-lg" id="inputlg" type="text"></div>
+            <input class=" form-control input-lg" id="inputlg" [(ngModel)]="addedgroupname" type="text" required></div>
 
-
+        <p class="error">{{error}}</p>
         <label for="inputlg"></label>
         <div style="text-align:right">
 
 
 
-            <input class="btn btn-default btn-lg" id="inp" type="submit" value="Add Group"></div>
+            <input class="btn btn-default btn-lg" id="inp" type="submit" value="Add Group" (click)="addgroup()"></div>
     </div>
 </div>
 <br/>
@@ -32,14 +32,17 @@
 
                 <tbody>
                     <!--foor looop-->
-                    <tr>
-                        <td>group 1</td>
-                        <button class="btn btn-danger btn-sm glyphicon glyphicon-remove"></button>
+                    <tr *ngFor="let group of groups.my">
+                        <td (click)="onclickedmy(group)">{{group.name}}</td>
+                        <button class="btn btn-danger btn-sm glyphicon glyphicon-remove" id={{group.id}} (click)="deletegroup(group.id)" type="submit"></button>
 
                     </tr>
-                    <tr>
-                        <td>group 2</td>
-                        <button class="btn btn-danger btn-sm glyphicon glyphicon-remove"></button>
+
+
+                    <tr *ngFor="let group of groups.in">
+                        <td (click)="onclickedin(group)">{{group.name}}</td>
+
+
                     </tr>
                     <!---->
 
@@ -53,5 +56,5 @@
 
 
     <div class='col-md-1'></div>
-    <app-groupdetails></app-groupdetails>
+    <app-groupdetails [groupselected]="groupselected" [type]="type"></app-groupdetails>
 </div>

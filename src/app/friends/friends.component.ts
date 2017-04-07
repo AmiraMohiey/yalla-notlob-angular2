@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef,OnChanges,DoCheck} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FriendsService } from './friends.service';
 
@@ -6,37 +6,32 @@ import { FriendsService } from './friends.service';
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.component.html',
-  styleUrls: ['./friends.component.css']
-})
-export class FriendsComponent implements OnInit {
-
-
-//   friendemail="";
-//   newfriend={name:"",avatar:""}
-//   error="";
-//   friends=[{"name":"amira","avatar":"../assets/u.png"},
-//            {"name":"salma","avatar":"../assets/u.png"}]
-//   constructor() {}
-//   ngOnInit() {}
-//    onSubmit(form: NgForm) {
-//     console.log(this.friendemail);
- 
-//   if(this.friendemail!="")
-//  { this.newfriend.name=this.friendemail; 
-//    this.newfriend.avatar="../assets/u.png" 
-// this.error="";}
-//  else {this.error="no such user"
-// }
+  styleUrls: ['./friends.component.css'],
   
-// =======
+})
+export class FriendsComponent implements OnInit ,DoCheck{
+
+
 
   friendemail= '';
   newfriend= { id: '',name: '', avatar: ''};
   error= '';
   friends= [];
 
-  constructor(private friendsService: FriendsService) {}
+  constructor(private friendsService: FriendsService,private cdRef:ChangeDetectorRef) {}
+ngDoCheck(){ this.friendsService.getFriends().subscribe(
+      data => {
+        const keyArr = [];
+        for (const key in data) {
+          keyArr.push(data[key]);
+          
+        }
+        this.friends = keyArr;
+        //  this.cdRef.detectChanges()
+      }
+    );
 
+}
   ngOnInit() {
     this.friendsService.getFriends().subscribe(
       data => {
@@ -46,6 +41,7 @@ export class FriendsComponent implements OnInit {
           
         }
         this.friends = keyArr;
+        //  this.cdRef.detectChanges()
       }
     );
   }
@@ -55,9 +51,11 @@ export class FriendsComponent implements OnInit {
     console.log(this.friendemail);
     this.friendsService.addFriend(user).subscribe(
       data => console.log(data)
+      
+
     );
   // if no username { error="sorry no such user"}
-
+      this.cdRef.detectChanges()
 
   }
 unfriend(event){
