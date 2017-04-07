@@ -27,9 +27,7 @@ export class SignupComponent implements OnInit {
   sendData() {
     this.signupService.sendRegData(this.user).subscribe(
       data => {
-        console.log('data success', data.success);
         if (data.success === true) {
-          console.log('data', data);
           const navigationExtras: NavigationExtras = {
             queryParams: {
               'msg': 'Successful Signup.. Please login'

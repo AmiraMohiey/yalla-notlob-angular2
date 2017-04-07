@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 
 
 @Injectable()
@@ -12,6 +12,7 @@ export class LoginService {
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.post('https://notlob-2eee7.firebaseio.com/login.json', body, {headers: headers});
+    return this.http.post('http://127.0.0.1:8090/authenticate/login', body, {headers: headers})
+      .map((response: Response) => response.json());
   }
 }

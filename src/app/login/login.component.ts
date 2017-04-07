@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AppService } from '../app.service';
 import { LoginService } from './login.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
+import {Router, NavigationExtras} from '@angular/router';
+import {JwtHelper} from 'angular2-jwt';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +18,9 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(private loginService: LoginService, private route: ActivatedRoute) {
+  constructor(private appService: AppService, private loginService: LoginService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
       this.msg = params['msg'];
     });
@@ -25,12 +29,20 @@ export class LoginComponent implements OnInit {
 
   sendData() {
     this.loginService.sendLoginData(this.logins).subscribe(
-      data => console.log(data)
+      data => {
+        if (data.success === true) {
+          localStorage.setItem('token', data.token);
+          this.appService.setLoggedin(true);
+          this.appService.me = this.jwtHelper.decodeToken(data.token)._doc;
+          this.router.navigate(['home']);
+        }else {
+          this.error = data.msg;
+        }
+      }
     );
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.logins);
     this.sendData();
   }
 

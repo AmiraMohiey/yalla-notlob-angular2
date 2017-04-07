@@ -4,7 +4,17 @@ import {Subject} from 'rxjs';
 
 @Injectable()
 export class AppService {
-  private loggedin = true;
+  private loggedin = false;
+  private _me = {};
+
+  get me(): {} {
+    return this._me;
+  }
+
+  set me(value: {}) {
+    this._me = value;
+  }
+
   loggedinChange: Subject<boolean> = new Subject<boolean>();
 
   constructor() { }
