@@ -21,6 +21,7 @@ import { AppService } from './app.service';
 import {SignupService} from './signup/signup.service';
 import {LoginService} from './login/login.service';
 import {FriendsService} from './friends/friends.service';
+import { GroupdetailsComponent } from './groups/groupdetails.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import {FriendsService} from './friends/friends.service';
     GroupsComponent,
 
     ViewnotificationComponent,
+
+    GroupdetailsComponent,
   ],
   imports: [
     BrowserModule,

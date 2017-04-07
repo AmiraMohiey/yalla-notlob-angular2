@@ -21,6 +21,10 @@
     <app-root>Loading...</app-root>
 </body>
 <script>
+    $(".nav li").on("click", function() {
+        $(".nav li").removeClass("active");
+        $(this).addClass("active");
+    });
 </script>
 
 </html>
