@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
+import { JwtHelper } from 'angular2-jwt';
 
 
 @Injectable()
 export class AppService {
   private loggedin = false;
   private _me = {};
+  jwtHelper: JwtHelper = new JwtHelper();
 
   get me(): {} {
     return this._me;
@@ -20,7 +22,14 @@ export class AppService {
   constructor() { }
 
   checkStatus(): boolean {
-  return this.loggedin;
+    const token = localStorage.getItem('token');
+    if (token != null) {
+      this.loggedin = true;
+      this.me = this.jwtHelper.decodeToken(token)._doc;
+    }else {
+      this.loggedin = false;
+    }
+    return this.loggedin;
   }
 
   setLoggedin(value: boolean) {

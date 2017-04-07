@@ -11,9 +11,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   me = {};
   notificationnumber=1;
   constructor(private appService: AppService) { }
-  changeStatus() {
-    this.appService.setLoggedin(!this.appService.checkStatus());
-  }
+
   ngOnInit() { }
   ngOnChanges() {
     this.me = this.appService.me;
@@ -24,6 +22,11 @@ export class HeaderComponent implements OnInit, OnChanges {
   onnotificationseen() {
 
     this.notificationnumber = 0;
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.appService.checkStatus();
+    window.location.reload();
   }
 }
 
