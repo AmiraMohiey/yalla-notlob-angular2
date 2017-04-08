@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {GroupsService} from './groups.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {GroupsService} from './groups.service';
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.css']
 })
-export class GroupsComponent implements OnInit {
+export class GroupsComponent implements OnInit, OnChanges {
   groups = {member: [], owner: []};
   owner;
   addedgroupname = '';
@@ -19,11 +19,14 @@ export class GroupsComponent implements OnInit {
     this.listGroups();
   }
 
+  ngOnChanges() {
+    this.listGroups();
+  }
+
   listGroups() {
     this.groupsService.listGroups().subscribe(
       data => {
         this.groups = data;
-        console.log(this.groups);
       }
     );
   }

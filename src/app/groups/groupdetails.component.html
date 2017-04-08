@@ -24,6 +24,7 @@
                         <input class="btn btn-default " id="inp" type="submit" value="Add To Group" (click)="addtogroup()"></div>
                     <div>
                         <p class="error">{{error}}</p>
+                        <p class="msg">{{msg}}</p>
                         <div class='glyphicon glyphicon-user'> </div>
                         Group members</div>
                     <!--forloop-->
@@ -48,7 +49,7 @@
                         <img src="data:image/png;base64,{{member.avatar}}" class="media-object" style="width:60px">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{member?.username}} <small><i>member</i></small> </h4><button *ngIf="owner" class="btn btn-danger btn-sm glyphicon glyphicon-remove" (click)="deleteuserfromgroup(member.id)"></button>
+                        <h4 class="media-heading">{{member?.username}} <small><i>member</i></small> </h4><button *ngIf="owner" class="btn btn-danger btn-sm glyphicon glyphicon-remove" (click)="deleteuserfromgroup(member._id)"></button>
 
                     </div>
 

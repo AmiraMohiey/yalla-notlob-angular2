@@ -15,4 +15,13 @@ export class GroupsService {
       .map((response: Response) => response.json());
   }
 
+  addGroupMember(body) {
+    return this.http.post('http://127.0.0.1:8090/groups/addMember', body, {headers: this.headers})
+      .map((response: Response) => response.json());
+  }
+  deleteGroupMember(body) {
+    return this.http.post('http://127.0.0.1:8090/groups/deleteMember', body, {headers: this.headers})
+      .map((response: Response) => response.json());
+  }
+
 }
