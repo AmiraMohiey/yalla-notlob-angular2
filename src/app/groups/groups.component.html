@@ -31,15 +31,15 @@
             <table class="table table-hover col-md-4">
 
                 <tbody>
-                    <!--foor looop-->
-                    <tr *ngFor="let group of groups.my">
+                    <!--for loop-->
+                    <tr *ngFor="let group of groups.owner">
                         <td (click)="onclickedmy(group)">{{group.name}}</td>
-                        <button class="btn btn-danger btn-sm glyphicon glyphicon-remove" id={{group.id}} (click)="deletegroup(group.id)" type="submit"></button>
+                        <button class="btn btn-danger btn-sm glyphicon glyphicon-remove" id={{group._id}} (click)="deletegroup(group._id)" type="submit"></button>
 
                     </tr>
 
 
-                    <tr *ngFor="let group of groups.in">
+                    <tr *ngFor="let group of groups.member">
                         <td (click)="onclickedin(group)">{{group.name}}</td>
 
 
@@ -56,5 +56,5 @@
 
 
     <div class='col-md-1'></div>
-    <app-groupdetails [groupselected]="groupselected" [type]="type"></app-groupdetails>
+    <app-groupdetails [groupselected]="groupselected" [owner]="owner"></app-groupdetails>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-groupdetails',
@@ -7,30 +7,27 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class GroupdetailsComponent implements OnInit {
 @Input() groupselected;
-@Input() type;
-addeduser=""
-error=""
+@Input() owner;
+addeduser= '';
+error= '';
   constructor() { }
 
   ngOnInit() {
   }
 
-mine(){
-  if(this.type=="my"){return true}
-  return false;
-}
+
 
   deleteuserfromgroup(user_id) {
-    
-    console.log(user_id)
+
+    console.log(user_id);
   }
 
 
   addtogroup(){
-    if(this.addeduser==""){this.error="please enter user email"}
-    else{this.error=""
+    if (this.addeduser == ''){this.error = 'please enter user email'; }
+    else{this.error = '';
   }
-  
-    console.log(this.addeduser)
+
+    console.log(this.addeduser);
   }
 }

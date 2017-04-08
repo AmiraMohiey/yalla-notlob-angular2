@@ -17,13 +17,14 @@ import { AddorderComponent } from './addorder/addorder.component';
 import { OrdersComponent } from './orders/orders.component';
 import { VieworderComponent } from './vieworder/vieworder.component';
 import { GroupsComponent } from './groups/groups.component';
+import { GroupdetailsComponent } from './groups/groupdetails.component';
 import { ViewnotificationComponent } from './viewnotification/viewnotification.component';
 
 import { AppService } from './app.service';
 import {SignupService} from './signup/signup.service';
 import {LoginService} from './login/login.service';
 import {FriendsService} from './friends/friends.service';
-import { GroupdetailsComponent } from './groups/groupdetails.component';
+import {GroupsService} from './groups/groups.service';
 import { Guard } from './guard';
 import { OrdersService } from './orders/orders.service';
 
@@ -60,7 +61,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     routing,
     FacebookModule.forRoot()
   ],
-  providers: [AppService, SignupService, LoginService, FriendsService,OrdersService, Guard, {
+  providers: [AppService, SignupService, LoginService, FriendsService, GroupsService, OrdersService, Guard, {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [Http, RequestOptions]

@@ -9,7 +9,7 @@
 
 
             <div class="col-md-4">
-                <div *ngIf="mine()">
+                <div *ngIf="owner">
                     <label for="inputlg">username</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></span>
@@ -31,10 +31,10 @@
                 <hr/>
                 <div class="media">
                     <div class="media-left">
-                        <img src="../assets/u.png" class="media-object" style="width:60px">
+                        <img src="data:image/png;base64,{{groupselected?.owner.avatar}}" class="media-object" style="width:60px">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{groupselected?.owner.name}} <small><i>owner</i></small></h4>
+                        <h4 class="media-heading">{{groupselected?.owner.username}} <small><i>owner</i></small></h4>
 
                     </div>
 
@@ -45,10 +45,10 @@
                 <hr/>
                 <div class="media" *ngFor="let member of groupselected?.members">
                     <div class="media-left">
-                        <img src="../assets/u.png" class="media-object" style="width:60px">
+                        <img src="data:image/png;base64,{{member.avatar}}" class="media-object" style="width:60px">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{member?.name}} <small><i>member</i></small> </h4><button *ngIf="mine()" class="btn btn-danger btn-sm glyphicon glyphicon-remove" (click)="deleteuserfromgroup(member.id)"></button>
+                        <h4 class="media-heading">{{member?.username}} <small><i>member</i></small> </h4><button *ngIf="owner" class="btn btn-danger btn-sm glyphicon glyphicon-remove" (click)="deleteuserfromgroup(member.id)"></button>
 
                     </div>
 
