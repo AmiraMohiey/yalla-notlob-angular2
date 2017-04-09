@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from "@angular/router";
 import { OrdersService } from './orders.service';
+import { AppService } from '../app.service';
 
 
 @Component({
@@ -10,13 +11,14 @@ import { OrdersService } from './orders.service';
 })
 export class OrdersComponent implements OnInit {
 orders
-me = {};
+// this.appservice.me = {};
   // orders = [{ id: "1", for: "breakfast", restaurant: "shbrawy", invited_no: "10", joined_no: "5", status: "waiting", meal: [{ id: "1", comment: "no salt", amount: "2", price: "8", item: "fries", person: "amira" }], joined: ["amira", "salma", "mohamed"], invitedgroups: [], invitedfriends: ["amira", "salma", "mohamed", "lina"] },
   // { id: "2", for: "lunch", restaurant: "mac", invited_no: "50", joined_no: "20", status: "finished", meal: [{ id: "2", comment: "", amount: "", price: "", item: "", person: "" }], joined: [], invitedgroups: [], invitedfriends: [] }]
-  constructor(private router: Router,private ordersservice: OrdersService) { }
+  constructor(private router: Router,private ordersservice: OrdersService,private appservice :AppService) { }
 
   ngOnInit() {
      this.getorders ();
+    console.log ("me:",this.appservice.me['_id'])
   }
   
   getorders(){
@@ -31,12 +33,15 @@ me = {};
         this.orders = keyArr;
       }
     );
-  }
+  console.log("orders",this.orders) }
   finish(event: any) {
 
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var order_id = idAttr.nodeValue;
+    this.ordersservice.finishorder(order_id).subscribe(
+      data => { this.getorders()})
+  
   }
 
   cancel(event: any) {
@@ -83,4 +88,11 @@ me = {};
     this.router.navigate(["vieworder"], navigationExtras);
   }
 
+
+checkmyorders(owner){
+  if (owner==this.appservice.me['_id']){
+    return true
+  }
+  return false
+}
 }

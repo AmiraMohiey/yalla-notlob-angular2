@@ -16,8 +16,10 @@ export class OrdersService {
   }
 
   finishorder(order: any) {
-    const body = JSON.stringify(order);
-    return this.http.post('http://127.0.0.1:8090/orders/addfriend', body, {headers: this.headers})
+     var obj={id:order}
+    const body =JSON.stringify(obj);
+
+    return this.http.post('http://127.0.0.1:8090/orders/checkout', body, {headers: this.headers})
       .map((response: Response) => response.json());
   }
 
@@ -57,6 +59,13 @@ deletemeal(id: any) {
       .map((response: Response) => { response.json()})
   }
 
+getorderbyid(id:any){
+    var obj={id:id}
+    const body =JSON.stringify(obj);
+     return this.http.post('http://127.0.0.1:8090/orders/getorderbyid',body, {headers: this.headers})
+      .map((response: Response) => response.json());
+  
+}
 }
 
 

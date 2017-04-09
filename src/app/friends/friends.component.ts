@@ -49,7 +49,7 @@ constructor(private friendsService: FriendsService) {}
         }
       }
     );
-  }
+  this.friendemail = '';}
 
   unfriend(event) {
     var target = event.target || event.srcElement || event.currentTarget;

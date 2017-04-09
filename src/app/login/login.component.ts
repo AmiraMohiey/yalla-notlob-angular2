@@ -26,14 +26,14 @@ export class LoginComponent implements OnInit {
       this.msg = params['msg'];
     });
 
-    let initParams: InitParams = {
-      appId: '1872637286325460',
-      xfbml: true,
-      version: 'v2.8'
-    };
+    // let initParams: InitParams = {
+    //   appId: '1872637286325460',
+    //   xfbml: true,
+    //   version: 'v2.8'
+    // };
 
-    const authResponse: AuthResponse = this.fb.getAuthResponse();
-    this.fb.init(initParams);
+    // const authResponse: AuthResponse = this.fb.getAuthResponse();
+    // this.fb.init(initParams);
 
   }
 

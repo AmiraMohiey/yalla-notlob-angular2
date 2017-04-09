@@ -1,7 +1,8 @@
 import { Component, OnInit,OnChanges } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute, Router ,NavigationExtras} from '@angular/router';
 import { OrdersService } from '../orders/orders.service';
 import { AppService } from '../app.service';
+
 
 @Component({
   selector: 'app-vieworder',
@@ -16,7 +17,7 @@ joinedfriends
 meals
 invitedfriends
 addmeal={orderid:"",comment:"",amount:"",price:"",item:"",person:""}
-  constructor(private route: ActivatedRoute, private ordersservice: OrdersService,private appService: AppService) {
+  constructor(private route: ActivatedRoute, private ordersservice: OrdersService,private appService: AppService,private router:Router) {
              this.route.queryParams.subscribe(params => {
              this.order = JSON.parse(params["order"]);
              this.invitedfriends=this.order.invitedfriends;
@@ -24,9 +25,9 @@ addmeal={orderid:"",comment:"",amount:"",price:"",item:"",person:""}
              this.meals=this.order.meals;
              this.addmeal.orderid=this.order.id;
           });
-          // console.log(this.order.owner)
+           console.log("order",this.order)
          this.me = this.appService.me['_id'];
-        console.log(this.me)
+        //console.log(this.me)
   }
 ngOnChanges() {
     this.me = this.appService.me;
@@ -34,19 +35,24 @@ ngOnChanges() {
   }
 
 addorder(){
+  if(this.addmeal.item&&this.addmeal.amount&&this.addmeal.price){
 console.log(this.addmeal)
   this.ordersservice.addmeal(this.addmeal).subscribe(
-      data => {})
+      data => {
+                  this.update()
+      })
+  }
+
 
 }
 deletemeal(event){
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var meal_id = idAttr.nodeValue;
-   console.log(meal_id)
+   console.log("m",meal_id)
    var meal={id:meal_id,orderid:this.order.id} 
  this.ordersservice.deletemeal(meal).subscribe(
-      data => { console.log(data)})
+      data => { console.log("jjj",data)})
 
 }
 statuscheck(){
@@ -59,5 +65,20 @@ statuscheck(){
   ngOnInit() {
     
   }
+  update(){   this.ordersservice.getorderbyid(this.order.id).subscribe(
+                        data2 => {  console.log("updaa",data2)
+                              let navigationExtras: NavigationExtras = {
+                              queryParams: {
+                               
+                                "order": JSON.stringify(data2)
+                        
+                              }
+                            }
+                   
+                    this.router.navigate(["vieworder"], navigationExtras);
+                this.addmeal={orderid:"",comment:"",amount:"",price:"",item:"",person:""}
+                      })
+       }
+  
 
 }

@@ -13,6 +13,7 @@
                     <th>Amount</th>
                     <th>Price</th>
                     <th>Comment</th>
+                    <th></th>
 
                 </tr>
             </thead>
@@ -22,7 +23,8 @@
                     <td>{{meal.item}}</td>
                     <td>{{meal.amount}}</td>
                     <td>{{meal.price}}</td>
-                    <td>{{meal.comment}}
+                    <td>{{meal.comment}} </td>
+                    <td>
                         <a *ngIf="statuscheck()" class="btn btn-danger btn-sm glyphicon glyphicon-remove" id={{meal._id}} (click)="deletemeal($event)" type="submit"></a>
                     </td>
                     <td>
@@ -67,7 +69,7 @@
 
                     <div class="form-group">
 
-                        <input type="text" class="form-control" [(ngModel)]="addmeal.comment" [ngModelOptions]="{standalone: true}" placeholder="comment" required>
+                        <input type="text" class="form-control" [(ngModel)]="addmeal.comment" [ngModelOptions]="{standalone: true}" placeholder="comment">
                     </div>
 
                     <button type="submit" class="btn btn-default glyphicon glyphicon-plus" (click)="addorder()"></button>
