@@ -15,6 +15,16 @@ export class GroupsService {
       .map((response: Response) => response.json());
   }
 
+  addGroup(name) {
+    return this.http.post('http://127.0.0.1:8090/groups', {name: name}, {headers: this.headers})
+      .map((response: Response) => response.json());
+  }
+
+  deleteGroup(id) {
+    return this.http.delete('http://127.0.0.1:8090/groups/' + id, {headers: this.headers})
+      .map((response: Response) => response.json());
+  }
+
   addGroupMember(body) {
     return this.http.post('http://127.0.0.1:8090/groups/addMember', body, {headers: this.headers})
       .map((response: Response) => response.json());

@@ -15,9 +15,13 @@ export class AppComponent implements OnInit, OnChanges {
     this.loggedin = this.appService.checkStatus();
     this.appService.loggedinChange.subscribe((value) => {
       this.loggedin = value;
+      if (value) {
+        this.router.navigate(['home']);
+      } else {
+        this.router.navigate(['login']);
+      }
     });
-    if (this.loggedin) { this.router.navigate(["home"]) }
-    else { this.router.navigate(["login"]) }
+
   }
   ngOnChanges() {
     // this.loggedin = this.appService.checkStatus();
