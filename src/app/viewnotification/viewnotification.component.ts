@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationsService } from './notifications.service';
+
+
+
 
 @Component({
   selector: 'app-viewnotification',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewnotificationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private notificationservice:NotificationsService) { }
 
   ngOnInit() {
+   this.getnotifications()
   }
+
+
+
+ getnotifications(){
+
+      this.notificationservice.getnotifications().subscribe(data => {
+     console.log(data)
+    });
+}
+
+
+
+
 
 }

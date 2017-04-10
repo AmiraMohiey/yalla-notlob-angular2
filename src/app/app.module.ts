@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { routing} from './app.routing';
+import { routing } from './app.routing';
 
 import { HomeComponent } from './home/home.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -21,20 +21,21 @@ import { GroupdetailsComponent } from './groups/groupdetails.component';
 import { ViewnotificationComponent } from './viewnotification/viewnotification.component';
 
 import { AppService } from './app.service';
-import {SignupService} from './signup/signup.service';
-import {LoginService} from './login/login.service';
-import {FriendsService} from './friends/friends.service';
-import {GroupsService} from './groups/groups.service';
+import { SignupService } from './signup/signup.service';
+import { LoginService } from './login/login.service';
+import { FriendsService } from './friends/friends.service';
+import { GroupsService } from './groups/groups.service';
 import { Guard } from './guard';
 import { OrdersService } from './orders/orders.service';
 import { NotificationsService } from './viewnotification/notifications.service';
+import { GetnotificationsService } from './viewnotification/getnotifications.service';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'x-access-token',
     tokenGetter: (() => localStorage.getItem('token')),
-    globalHeaders: [{'Content-Type': 'application/json'}],
+    globalHeaders: [{ 'Content-Type': 'application/json' }],
   }), http, options);
 }
 
@@ -62,11 +63,20 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     routing,
     FacebookModule.forRoot()
   ],
-  providers: [AppService, SignupService, LoginService, FriendsService, GroupsService, OrdersService, Guard,NotificationsService, {
-    provide: AuthHttp,
-    useFactory: authHttpServiceFactory,
-    deps: [Http, RequestOptions]
-  }],
+  providers: [
+    AppService,
+    SignupService,
+    LoginService,
+    FriendsService,
+    GroupsService,
+    OrdersService,
+    Guard,
+    NotificationsService,
+    GetnotificationsService, {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

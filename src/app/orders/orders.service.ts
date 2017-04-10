@@ -11,61 +11,61 @@ export class OrdersService {
     this.headers.append('x_access_token', localStorage.getItem('token'));
   }
   getorders() {
-    return this.http.get('http://127.0.0.1:8090/orders/allorders', {headers: this.headers})
+    return this.http.get('http://127.0.0.1:8090/orders/allorders', { headers: this.headers })
       .map((response: Response) => response.json());
   }
 
   finishorder(order: any) {
-     var obj={id:order}
-    const body =JSON.stringify(obj);
+    var obj = { id: order }
+    const body = JSON.stringify(obj);
 
-    return this.http.post('http://127.0.0.1:8090/orders/checkout', body, {headers: this.headers})
+    return this.http.post('http://127.0.0.1:8090/orders/checkout', body, { headers: this.headers })
       .map((response: Response) => response.json());
   }
 
- cancelorder(id: any) {
+  cancelorder(id: any) {
     // const body =;
-       var obj={id:id}
-    const body =JSON.stringify(obj);
-    return this.http.delete('http://127.0.0.1:8090/orders/cancel',new RequestOptions({
-   headers: this.headers,
-   body:  JSON.stringify(obj)
-}))
-      .map((response: Response) => { response.json()})
+    var obj = { id: id }
+    const body = JSON.stringify(obj);
+    return this.http.delete('http://127.0.0.1:8090/orders/cancel', new RequestOptions({
+      headers: this.headers,
+      body: JSON.stringify(obj)
+    }))
+      .map((response: Response) => { response.json() })
   }
-addorder(order :any){
+  addorder(order: any) {
 
-  const body = JSON.stringify(order);
-  console.log(body)
-    return this.http.post('http://127.0.0.1:8090/orders/add', body, {headers: this.headers})
+    const body = JSON.stringify(order);
+    console.log(body)
+    return this.http.post('http://127.0.0.1:8090/orders/add', body, { headers: this.headers })
       .map((response: Response) => response.json())
-}
-addmeal(meal ) {
-  const body = JSON.stringify(meal);
-    return this.http.post('http://127.0.0.1:8090/orders/addmeal',body, {headers: this.headers})
+  }
+  addmeal(meal) {
+    const body = JSON.stringify(meal);
+    return this.http.post('http://127.0.0.1:8090/orders/addmeal', body, { headers: this.headers })
       .map((response: Response) => response.json());
   }
 
 
 
-deletemeal(id: any) {
+  deletemeal(id: any) {
     // const body =;
-       
+
     // const body =JSON.stringify(obj);
-    return this.http.delete('http://127.0.0.1:8090/orders/removemeal',new RequestOptions({
-   headers: this.headers,
-   body:  JSON.stringify(id)
-}))
-      .map((response: Response) => { response.json()})
+    return this.http.delete('http://127.0.0.1:8090/orders/removemeal', new RequestOptions({
+      headers: this.headers,
+      body: JSON.stringify(id)
+    }))
+      .map((response: Response) => { response.json() })
   }
 
-getorderbyid(id:any){
-    var obj={id:id}
-    const body =JSON.stringify(obj);
-     return this.http.post('http://127.0.0.1:8090/orders/getorderbyid',body, {headers: this.headers})
+  getorderbyid(id: any) {
+    var obj = { id: id }
+    const body = JSON.stringify(obj);
+    return this.http.post('http://127.0.0.1:8090/orders/getorderbyid', body, { headers: this.headers })
       .map((response: Response) => response.json());
-  
-}
+
+  }
 }
 
 
