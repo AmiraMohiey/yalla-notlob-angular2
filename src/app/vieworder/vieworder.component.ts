@@ -52,7 +52,7 @@ deletemeal(event){
    console.log("m",meal_id)
    var meal={id:meal_id,orderid:this.order.id} 
  this.ordersservice.deletemeal(meal).subscribe(
-      data => { console.log("jjj",data)})
+      data => { this.update()})
 
 }
 statuscheck(){

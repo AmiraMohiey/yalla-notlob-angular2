@@ -80,5 +80,7 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+  loginwithgoogle(){console.log("google")}
 }
 
