@@ -11,6 +11,7 @@ export class GroupsComponent implements OnInit, OnChanges {
   owner;
   addedgroupname = '';
   error = '';
+  msg = '';
   groupselected;
 
   constructor(private groupsService: GroupsService) { }
@@ -32,21 +33,50 @@ export class GroupsComponent implements OnInit, OnChanges {
   }
 
   deletegroup(group_id) {
-
-    console.log(group_id);
+    this.error = '';
+    this.msg = '';
+    this.groupsService.deleteGroup(group_id).subscribe(
+      data => {
+        if (data.success) {
+          this.msg = 'Group deleted successfully';
+          this.listGroups();
+        } else {
+          this.error = data.error;
+        }
+      }
+    );
   }
 
   addgroup() {
-    if (this.addedgroupname == '') { this.error = 'can\'t leave group name empty'; }
-    else { this.error = ''; }
+    if (this.addedgroupname == '') {
+      this.error = 'can\'t leave group name empty';
+      this.msg = '';
+    } else {
+      this.error = '';
+      this.groupsService.addGroup(this.addedgroupname).subscribe(
+        data => {
+          if (data.success) {
+            this.msg = 'Group ' + this.addedgroupname + ' added successfully';
+            this.listGroups();
+          }else {
+            this.msg = '';
+            this.error = data.error;
+          }
+        }
+      );
+    }
   }
 
   onclickedmy(group) {
+    this.msg = '';
+    this.error = '';
     this.groupselected = group;
     this.owner = true;
   }
 
   onclickedin(group) {
+    this.msg = '';
+    this.error = '';
     this.groupselected = group;
     this.owner = false;
   }
