@@ -29,6 +29,7 @@ export class GroupdetailsComponent implements OnInit {
         data => {
           if (data.success) {
             this.msg = 'friend added successfully';
+            window.location.reload();
           }else {
             this.error = data.error;
           }
@@ -42,6 +43,7 @@ export class GroupdetailsComponent implements OnInit {
       data => {
         if (data.success) {
           this.msg = 'friend deleted successfully';
+          window.location.reload();
         }else {
           this.error = data.error;
         }
