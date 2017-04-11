@@ -16,7 +16,7 @@ export class GroupsService {
   }
 
   addGroup(name) {
-    return this.http.post('http://127.0.0.1:8090/groups', {name: name}, {headers: this.headers})
+      return this.http.post('http://127.0.0.1:8090/groups', {name: name}, {headers: this.headers})
       .map((response: Response) => response.json());
   }
 
