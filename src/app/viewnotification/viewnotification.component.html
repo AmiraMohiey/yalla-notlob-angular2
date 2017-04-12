@@ -3,8 +3,8 @@
     <div class='col-md-2'></div>
     <div class="panel panel-default col-md-8">
         <div class="header">
-            <div class='glyphicon glyphicon-list-alt'> </div> notifications
-        </div>
+            <!--<div class='glyphicon glyphicon-list-alt'> </div> -->
+            <img src="../assets/not.png" style="width:40px;height:40px" /> notifications </div>
 
         <div class="panel-body">
 
@@ -16,7 +16,7 @@
                 <div class="media-body">
 
                     <div class="media-left">
-                        <p>{{notification?.msg[0].name}} {{notification?.msg[1]}} {{notification?.msg[2]?.name}} <button class="btn btn-info" (click)="join(notification)" *ngIf="invited(notification?.msg[1])" style="margin-left:100%;margin-top:-10%">join order now </button></p>
+                        <p>{{notification?.msg[0].name}} {{notification?.msg[1]}} {{notification?.msg[2]?.name}} {{notification?.msg[3]}} <button [hidden]="!joined" class="btn btn-info" (click)="join(notification)" *ngIf="invited(notification?.msg[1])" style="margin-left:100%;margin-top:-10%">join order now </button></p>
 
                     </div>
 

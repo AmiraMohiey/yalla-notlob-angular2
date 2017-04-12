@@ -14,6 +14,10 @@ export class OrdersService {
     return this.http.get('http://127.0.0.1:8090/orders/allorders', { headers: this.headers })
       .map((response: Response) => response.json());
   }
+   getlatestorders() {
+    return this.http.get('http://127.0.0.1:8090/orders/latestorders', { headers: this.headers })
+      .map((response: Response) => response.json());
+  }
 
   finishorder(order: any) {
     var obj = { id: order }
@@ -63,6 +67,20 @@ export class OrdersService {
     var obj = { id: id }
     const body = JSON.stringify(obj);
     return this.http.post('http://127.0.0.1:8090/orders/getorderbyid', body, { headers: this.headers })
+      .map((response: Response) => response.json());
+
+  }
+   joinorder(id: any) {
+    var obj = { id: id }
+    const body = JSON.stringify(obj);
+    return this.http.post('http://127.0.0.1:8090/orders/join', body, { headers: this.headers })
+      .map((response: Response) => response.json());
+
+  }
+ checkinvited(id: any) {
+   
+    const body = JSON.stringify(id);
+    return this.http.post('http://127.0.0.1:8090/orders/checkinvited', body, { headers: this.headers })
       .map((response: Response) => response.json());
 
   }

@@ -4,8 +4,28 @@
         <div class="header">
             <div class='glyphicon glyphicon-list-alt'> </div> Latest orders
         </div>
-        <hr/>
-        <div class="panel-body">Panel Content</div>
+
+        <div class="panel-body">
+
+
+
+
+            <div class="media" *ngFor="let order of latestorders">
+                <hr/>
+                <div class="media-body">
+
+                    <div class="media-left">
+                        <p>You have orderd from {{order?.resturant}} for {{order?.forr}} </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
     </div>
 
 
@@ -15,8 +35,21 @@
         <div class="header">
             <div class='glyphicon glyphicon-user'> </div>
             Friends' Activities</div>
-        <hr/>
-        <div class="panel-body">Panel Content</div>
+        <div class="panel-body">
+            <div class="media" *ngFor="let notification of friendsactivity">
+                <hr/>
+                <div class="media-body">
+
+                    <div class="media-left">
+                        <p>{{notification?.msg[0].name}} {{notification?.msg[1]}} {{notification?.msg[2]?.name}} {{notification?.msg[3]}}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
 
 
         <div class='col-md-1'></div>
