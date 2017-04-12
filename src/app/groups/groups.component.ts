@@ -57,6 +57,7 @@ export class GroupsComponent implements OnInit, OnChanges {
         data => {
           if (data.success) {
             this.msg = 'Group ' + this.addedgroupname + ' added successfully';
+            this. addedgroupname = ''
             this.listGroups();
           }else {
             this.msg = '';
@@ -65,7 +66,7 @@ export class GroupsComponent implements OnInit, OnChanges {
         }
       );
     }
-  }
+   ; }
 
   onclickedmy(group) {
     this.msg = '';

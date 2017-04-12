@@ -17,7 +17,8 @@ invitedfriend:"",
 invitedgroup:""}
 
 userfriends=[{name:"amira@yahoo.com"},{name:"mohamed@yahoo.com"}]
-usergroups=[{name:"group1"},{name:"group2"}]
+usergroups= [];
+
 constructor( private ordersservice: OrdersService ,private router :Router,private friendservice:FriendsService,private groupservice:GroupsService) { }
 ngOnInit() { 
   this.getfriends();
@@ -44,6 +45,7 @@ getfriends(){
           keyArr.push(data.friends[key]);
         }
         this.userfriends = keyArr;
+        
       }
     );
   }
@@ -51,7 +53,8 @@ getfriends(){
 getgroups(){
    this.groupservice.listGroups().subscribe(
       data => {
-        //this.usergroups= data;
+        this.usergroups= data.owner;
+        console.log( "groups",this.usergroups)
       }
     );
 }
