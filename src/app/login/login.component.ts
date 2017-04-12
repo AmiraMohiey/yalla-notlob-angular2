@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
       data => {
         if (data.success === true) {
           localStorage.setItem('token', data.token);
+          localStorage.setItem('me', JSON.stringify(data.me));
           this.appService.setLoggedin(true);
-          this.appService.me = this.jwtHelper.decodeToken(data.token)._doc;
+          this.appService.me = data.me;
           this.router.navigate(['home']);
         } else {
           this.error = data.msg;
@@ -61,14 +62,14 @@ export class LoginComponent implements OnInit {
   }
   loginwithfb() {
     console.log("fb")
-    //  
+    //
     this.fb.login()
       .then((response: LoginResponse) => {
 
         this.fb.api('/me?fields=id,name,email,first_name,gender,picture.width(150).height(150),age_range,friends')
           .then(res => {
           this.user = res;
-          console.log("user ", this.user)//user obejct 
+          console.log("user ", this.user)//user obejct
           }
           )
           .catch(e => console.log(e));

@@ -25,7 +25,7 @@ export class AppService {
     const token = localStorage.getItem('token');
     if (token != null) {
       this.loggedin = true;
-      this.me = this.jwtHelper.decodeToken(token)._doc;
+      this.me = JSON.parse(localStorage.getItem('me'));
     }else {
       this.loggedin = false;
     }

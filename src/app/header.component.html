@@ -35,7 +35,7 @@
                     <p *ngIf="loggedin" class="navbar-text">Welcome {{me.username}}</p>
                 </li>
                 <li>
-                    <a><img *ngIf="loggedin" src="data:image/png;base64,{{me.avatar}}" width="25px"></a>
+                  <a><img *ngIf="loggedin" src="data:image/png;base64,{{me.avatar}}" width="25px"></a>
                 </li>
                 <li [class.hidden]="!loggedin" class="dropdown" (click)="onnotificationseen()">
                     <a class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown" href="#">

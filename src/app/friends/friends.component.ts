@@ -32,6 +32,7 @@ constructor(private friendsService: FriendsService) {}
           keyArr.push(data.friends[key]);
         }
         this.friends = keyArr;
+        console.log(data.friends);
       }
     );
   }
