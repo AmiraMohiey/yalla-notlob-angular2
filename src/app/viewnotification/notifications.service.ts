@@ -16,6 +16,9 @@ export class NotificationsService {
   }
 
 
+sendMessage(message){ 
+  this.socket.emit('unseen', message); }
+
   getNotificationssocketio() { 
     console.log("test")
     let observable = new Observable(observer => {

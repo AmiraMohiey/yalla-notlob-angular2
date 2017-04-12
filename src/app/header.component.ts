@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Input() loggedin;
   me = {};
   connection
-  notificationnumber=1;
+  notificationnumber=0;
   msgs=[]
   msg
   
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnChanges {
 
 this.connection = this.notification.getNotificationssocketio().subscribe(message => {
   console.log("from socket io")
-   this.msgs.push(message);
+   this.notificationnumber=message['unseen']
 
 
 
@@ -39,6 +39,7 @@ this.connection = this.notification.getNotificationssocketio().subscribe(message
   onnotificationseen() {
 
     this.notificationnumber = 0;
+    this.notification.sendMessage(0); 
   }
   logout() {
     localStorage.removeItem('token');
