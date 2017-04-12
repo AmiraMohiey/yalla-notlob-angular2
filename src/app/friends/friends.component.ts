@@ -26,7 +26,7 @@ constructor(private friendsService: FriendsService) {}
 
   getFiends () {
     this.friendsService.getFriends().subscribe(
-      data => {
+      data => { console.log(data)
         const keyArr = [];
         for (const key in data.friends) {
           keyArr.push(data.friends[key]);

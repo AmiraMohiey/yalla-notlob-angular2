@@ -31,13 +31,13 @@ export class ViewnotificationComponent implements OnInit {
       //  console.log(data[2].msg)
         const keyArr = [];
         for (const key in data) {
-          // console.log(data)
+           console.log(data)
           keyArr.push(data[key]);
         }
         this.notifications = keyArr;
       
     });
-    // console.log(this.notifications)
+    console.log(this.notifications)
 }
 
 

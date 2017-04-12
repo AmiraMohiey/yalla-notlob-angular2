@@ -16,8 +16,8 @@ forr:"",
 invitedfriend:"",
 invitedgroup:""}
 
-userfriends=[{name:"amira@yahoo.com"},{name:"mohamed@yahoo.com"}]
-usergroups= [];
+userfriends=[]
+usergroups
 
 constructor( private ordersservice: OrdersService ,private router :Router,private friendservice:FriendsService,private groupservice:GroupsService) { }
 ngOnInit() { 
@@ -35,16 +35,23 @@ onclicked(){
 isgroup(){
 
   if(this.invited=="group")
-{return true}
-else {return false}}
+
+{
+  return true
+}
+  else {return false}
+}
+
+
 getfriends(){
    this.friendservice.getFriends().subscribe(
       data => {
         const keyArr = [];
         for (const key in data.friends) {
-          keyArr.push(data.friends[key]);
+          keyArr.push(data.friends[key].username);
         }
         this.userfriends = keyArr;
+ console.log("user",this.userfriends)
         
       }
     );
@@ -52,7 +59,7 @@ getfriends(){
 
 getgroups(){
    this.groupservice.listGroups().subscribe(
-      data => {
+      data => { console.log(data)
         this.usergroups= data.owner;
         console.log( "groups",this.usergroups)
       }
