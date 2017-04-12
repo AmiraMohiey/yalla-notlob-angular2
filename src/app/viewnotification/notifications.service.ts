@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-// import { Subject } from 'rxjs/Subject';
-// import { Observable } from 'rxjs/Observable';
-// import * as io from 'socket.io-client';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import * as io from 'socket.io-client';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 @Injectable()
 export class NotificationsService {
-  private url = 'http://localhost:5000';
+  private url = 'http://localhost:8090/'
   private socket;
   headers;
   constructor(private http: Http) {
@@ -16,18 +16,20 @@ export class NotificationsService {
   }
 
 
-  // getNotificationssocketio() {
-  //   let observable = new Observable(observer => {
-  //     this.socket = io(this.url);
-  //     this.socket.on('message', (data) => {
-  //       observer.next(data);
-  //     });
-  //     return () => {
-  //       this.socket.disconnect();
-  //     };
-  //   })
-  //   return observable;
-  // }
+  getNotificationssocketio() { 
+    console.log("test")
+    let observable = new Observable(observer => {
+      this.socket = io(this.url);
+      this.socket.on('message', (data) => {
+        console.log("socketio",data)
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
 
 
   getnotifications() {
