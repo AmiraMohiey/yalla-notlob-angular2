@@ -8,24 +8,25 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 export class NotificationsService {
   private url = 'http://localhost:8090/'
   private socket;
+  notNum = 0;
   headers;
   constructor(private http: Http) {
-   
+
   }
 
 
-sendMessage(message){ 
+sendMessage(title, message){
    this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('x_access_token', localStorage.getItem('token'));
-  this.socket.emit('unseen', message); }
+  this.socket.emit(title, message); }
 
-  getNotificationssocketio() { 
+  getNotificationssocketio() {
     console.log("test")
     let observable = new Observable(observer => {
       this.socket = io(this.url);
       this.socket.on('message', (data) => {
-        console.log("socketio",data)
+        this.notNum++
         observer.next(data);
       });
       return () => {
