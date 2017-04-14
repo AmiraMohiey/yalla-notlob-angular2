@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, group} from '@angular/core';
 import {GroupsService} from "./groups.service";
 import {GroupsComponent} from "./groups.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-groupdetails',
@@ -14,7 +15,7 @@ export class GroupdetailsComponent implements OnInit {
   error= '';
   msg= '';
 
-  constructor( private groupsService: GroupsService ) { }
+  constructor( private groupsService: GroupsService ,private router:Router) { }
 
   ngOnInit() {
   }
@@ -29,7 +30,7 @@ export class GroupdetailsComponent implements OnInit {
         data => {
           if (data.success) {
             this.msg = 'friend added successfully';
-            window.location.reload();
+            this.router.navigate(["direct"]);
           }else {
             this.error = data.error;
           }
@@ -43,7 +44,7 @@ export class GroupdetailsComponent implements OnInit {
       data => {
         if (data.success) {
           this.msg = 'friend deleted successfully';
-          window.location.reload();
+          this.router.navigate(["direct"]);
         }else {
           this.error = data.error;
         }

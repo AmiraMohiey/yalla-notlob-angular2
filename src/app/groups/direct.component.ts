@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-direct',
-  templateUrl: './direct.component.html',
-  styleUrls: ['./direct.component.css']
+  template: '',
+  styles: ['']
 })
 export class DirectComponent implements OnInit {
 

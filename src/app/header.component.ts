@@ -9,6 +9,7 @@ import { NotificationsService } from './viewnotification/notifications.service';
 })
 export class HeaderComponent implements OnInit, OnChanges {
   @Input() loggedin;
+  headernotifications
   me = {};
   connection
   notificationnumber=0;
@@ -16,35 +17,53 @@ export class HeaderComponent implements OnInit, OnChanges {
   msg
   
   constructor(private appService: AppService,private notification:NotificationsService) {
-    this.notification.getNotificationssocketio();
+  
    }
 
   ngOnInit() { 
+if(this.loggedin){
+  console.log("this.loggedin",this.loggedin)
+  this.connection = this.notification.getNotificationssocketio().subscribe(message => {
+   console.log("from socket io")
+   this.notificationnumber++})
+ }
 
-this.connection = this.notification.getNotificationssocketio().subscribe(message => {
-  console.log("from socket io")
-   this.notificationnumber=message['unseen']
-
-
-
-}) }
+}
   ngOnChanges() {
-    this.me = this.appService.me;
-     //this.notification.getNotificationssocketio();
+    if(this.loggedin){
+  console.log("this.loggedin",this.loggedin)
+  this.connection = this.notification.getNotificationssocketio().subscribe(message => {
+   console.log("from socket io")
+   this.notificationnumber++})}
      
   }
-  getnotification() {
-    this.notificationnumber = 2;// comming from server
-  }
+ 
   onnotificationseen() {
-
+    this.shownotification()
     this.notificationnumber = 0;
-    this.notification.sendMessage(0); 
+   // this.setseen()
+  
   }
   logout() {
     localStorage.removeItem('token');
     this.appService.checkStatus();
     window.location.reload();
+  }
+  setseen(){
+    // this.notification.setseen().subscribe(data => {
+    //   console.log("put req",data)
+    //     })
+  }
+  shownotification(){
+     this.notification.getnotifications().subscribe(data => {
+      const keyArr = [];
+        for (const key in data) {
+          console.log(data)
+          keyArr.push(data[key]);
+        }
+        this. headernotifications = keyArr;
+      
+    });
   }
 }
 

@@ -16,8 +16,8 @@
             <div class="navbar-header">
 
 
-                <a class="navbar-brand" [routerLink]="['/home']">
-                    <B> <img src="assets/l.png" width="60px" style="margin-top:-10%" > Yalla Notlob</B>
+                <a class="navbar-brand" [routerLink]="['/home']" style="margin-top:-10%">
+                    <B> <img src="assets/l.png" width="50px" > Yalla Notlob</B>
 
                 </a>
 
@@ -35,16 +35,21 @@
                     <p *ngIf="loggedin" class="navbar-text">Welcome {{me.username}}</p>
                 </li>
                 <li>
-                  <a><img *ngIf="loggedin" src="data:image/png;base64,{{me.avatar}}" width="25px"></a>
+                    <a><img *ngIf="loggedin" src="data:image/png;base64,{{me.avatar}}" width="25px"></a>
                 </li>
                 <li [class.hidden]="!loggedin" class="dropdown" (click)="onnotificationseen()">
                     <a class="dropdown-toggle glyphicon glyphicon-bell" data-toggle="dropdown" href="#">
                         <div *ngIf="notificationnumber"><span id="not" class="notification pink">{{notificationnumber}}</span></div>
                     </a>
 
-                    <ul class="dropdown-menu">
-                        <li><a> notofication 1</a></li>
-                        <li><a href="#">notofication 2</a></li>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li *ngFor="let notification of headernotifications | slice:0:5;">
+                            <a>{{notification?.msg[0]?.name}} {{notification?.msg[1]}} {{notification?.msg[2]?.name}} {{notification?.msg[3]}}
+
+                            </a>
+                        </li>
+
+                        <li role="presentation" class="divider"></li>
 
 
                         <li><a class="btn btn-lin" [routerLink]="['/viewnotification']">view all</a></li>

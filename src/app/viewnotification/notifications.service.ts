@@ -10,13 +10,14 @@ export class NotificationsService {
   private socket;
   headers;
   constructor(private http: Http) {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('x_access_token', localStorage.getItem('token'));
+   
   }
 
 
 sendMessage(message){ 
+   this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('x_access_token', localStorage.getItem('token'));
   this.socket.emit('unseen', message); }
 
   getNotificationssocketio() { 
@@ -36,6 +37,9 @@ sendMessage(message){
 
 
   getnotifications() {
+     this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('x_access_token', localStorage.getItem('token'));
     return this.http.get('http://127.0.0.1:8090/notifications', { headers: this.headers })
       .map((response: Response) => response.json());
   }

@@ -26,14 +26,7 @@ export class LoginComponent implements OnInit {
       this.msg = params['msg'];
     });
 
-    // let initParams: InitParams = {
-    //   appId: '1872637286325460',
-    //   xfbml: true,
-    //   version: 'v2.8'
-    // };
-
-    // const authResponse: AuthResponse = this.fb.getAuthResponse();
-    // this.fb.init(initParams);
+    
 
   }
 
@@ -60,28 +53,42 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
   loginwithfb() {
     console.log("fb")
-    //
-    this.fb.login()
+    let initParams: InitParams = {
+       appId: '266994343760078',
+       xfbml: true,
+       version: 'v2.8'
+     };
+
+     const authResponse: AuthResponse = this.fb.getAuthResponse();
+      this.fb.init(initParams);
+      this.fb.login({ scope: 'email' })
       .then((response: LoginResponse) => {
-
-        this.fb.api('/me?fields=id,name,email,first_name,gender,picture.width(150).height(150),age_range,friends')
-          .then(res => {
-          this.user = res;
-          console.log("user ", this.user)//user obejct
-          }
-          )
-          .catch(e => console.log(e));
-
-      })
-      .catch((error: any) => console.error(error));
-
-
-
-
+       this.fb.api('/me?fields=id,name,email,first_name,gender,picture.width(150).height(150)')
+                          .then(res => {
+                           this.user = res;
+                           this.loginService.facebooklogin(res).subscribe(
+                                       data => {
+                                        if (data.success === true) {
+                                          localStorage.setItem('token', data.token);
+                                          localStorage.setItem('me', JSON.stringify(data.me));
+                                          this.appService.setLoggedin(true);
+                                          this.appService.me = data.me;
+                                          this.router.navigate(['home']);
+                                        } else {
+                                          this.error = data.msg;
+                                        }
+                                      });
+                                          
+                                        console.log("user ", this.user)//user obejct
+                 }).catch(e => console.log(e));
+           }).catch((error: any) => console.error(error));
   }
 
-  loginwithgoogle(){console.log("google")}
+  loginwithgoogle(){
+    console.log("google")
+  }
 }
 

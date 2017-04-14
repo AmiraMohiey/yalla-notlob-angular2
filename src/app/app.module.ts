@@ -29,6 +29,7 @@ import { Guard } from './guard';
 import { OrdersService } from './orders/orders.service';
 import { NotificationsService } from './viewnotification/notifications.service';
 import { GetnotificationsService } from './viewnotification/getnotifications.service';
+import { DirectComponent } from './groups/direct.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -55,6 +56,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ViewnotificationComponent,
 
     GroupdetailsComponent,
+
+    DirectComponent,
   ],
   imports: [
     BrowserModule,

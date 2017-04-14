@@ -9,6 +9,7 @@ import { VieworderComponent } from './vieworder/vieworder.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ViewnotificationComponent } from './viewnotification/viewnotification.component';
 import { Guard } from './guard';
+import { DirectComponent } from './groups/direct.component';
 
 const APP_ROUTES: Routes = [
 
@@ -20,6 +21,7 @@ const APP_ROUTES: Routes = [
     { path: 'orders', component: OrdersComponent , canActivate: [Guard]},
     { path: 'vieworder', component: VieworderComponent, canActivate: [Guard] },
     { path: 'groups', component: GroupsComponent , canActivate: [Guard]},
+    { path: 'direct', component: DirectComponent  , canActivate: [Guard]},
     { path: 'viewnotification', component: ViewnotificationComponent, canActivate: [Guard]}
 
 ];
