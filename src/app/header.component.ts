@@ -21,16 +21,20 @@ export class HeaderComponent implements OnInit, OnChanges {
    }
 
   ngOnInit() { 
-if(this.loggedin){
-  console.log("this.loggedin",this.loggedin)
-  this.connection = this.notification.getNotificationssocketio().subscribe(message => {
-   console.log("from socket io")
-   this.notificationnumber++})
- }
+    
+// if(this.loggedin){
+//   // this.shownotification()
+//   console.log("this.loggedin",this.loggedin)
+//   this.connection = this.notification.getNotificationssocketio().subscribe(message => {
+//    console.log("from socket io")
+//    this.notificationnumber++})
+//  }
 
 }
   ngOnChanges() {
+    this.me = this.appService.me;
     if(this.loggedin){
+      this.shownotification()
   console.log("this.loggedin",this.loggedin)
   this.connection = this.notification.getNotificationssocketio().subscribe(message => {
    console.log("from socket io")
@@ -40,8 +44,9 @@ if(this.loggedin){
  
   onnotificationseen() {
     this.shownotification()
+    this.setseen()
     this.notificationnumber = 0;
-   // this.setseen()
+   
   
   }
   logout() {
@@ -50,18 +55,22 @@ if(this.loggedin){
     window.location.reload();
   }
   setseen(){
-    // this.notification.setseen().subscribe(data => {
-    //   console.log("put req",data)
-    //     })
+    this.notification.setseen().subscribe(data => {
+      console.log("put req",data)
+       this.notificationnumber = 0; })
+          
   }
+
   shownotification(){
-     this.notification.getnotifications().subscribe(data => {
+     this.notification.getunseennotifications().subscribe(data => {
       const keyArr = [];
         for (const key in data) {
           console.log(data)
           keyArr.push(data[key]);
         }
+        console.log("arraylenght",keyArr.length)
         this. headernotifications = keyArr;
+      this.notificationnumber=keyArr.length
       
     });
   }
